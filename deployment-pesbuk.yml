@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: sosmed-service
-  namespace: default
+  namespace: stagging
 spec:
   ports:
   - port: 80
@@ -15,7 +15,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sosmed
-  namespace: default
+  namespace: stagging
 spec:
   selector:
     matchLabels:
@@ -54,7 +54,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: sosmed-ingress
-  namespace: default
+  namespace: stagging
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
