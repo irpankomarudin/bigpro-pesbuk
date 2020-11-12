@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: sosmed-service
-  namespace: production
+  namespace: prod
 spec:
   ports:
   - port: 80
@@ -15,7 +15,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sosmed
-  namespace: production
+  namespace: prod
 spec:
   selector:
     matchLabels:
@@ -54,12 +54,12 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: sosmed-ingress
-  namespace: production
+  namespace: prod
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: pesbuk-cilsy.komarudins.online
+  - host: pesbuk-bp.komarudins.online
     http:
       paths:
       #- path: /
