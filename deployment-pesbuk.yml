@@ -59,7 +59,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: pesbuk-bp.komarudins.online
+  - host: pesbukbp.komarudins.online
     http:
       paths:
       #- path: /
