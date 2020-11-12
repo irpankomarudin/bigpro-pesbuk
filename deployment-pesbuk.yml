@@ -44,6 +44,11 @@ spec:
             secretKeyRef:
               name: p-secret-fb
               key: DB_PASS
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: p-secret-fb
+              key: DB_NAME
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
