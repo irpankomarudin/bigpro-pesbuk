@@ -31,8 +31,8 @@ pipeline {
         stage('deploy') {
             steps {
                 sh('kubectl delete -f deployment-pesbuk.yml')
-                //sh('kubectl apply -f deployment-pesbuk.yml')
-                //sh('kubectl apply -f secret-pesbuk.yml')
+                sh('kubectl apply -f deployment-pesbuk.yml')
+                sh('kubectl apply -f secret-pesbuk.yml')
                 }
            }
         stage('remove image docker') {
