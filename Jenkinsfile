@@ -18,16 +18,16 @@ pipeline {
                 sh('sed -i "s/tag/$BUILD_NUMBER/g" deployment-pesbuk.yml')
                 }
            }
-        stage('locate namespace') {
-            steps {
-              sh('sed -i "s/default/production/g" deployment-pesbuk.yml')
-                }
-           }
-        stage('add domain') {
-            steps {
-                sh('sed -i "s/pesbuk.komarudins.online/pesbuk-cilsy.komarudins.online/g" deployment-pesbuk.yml')
-                }
-           }
+        //stage('locate namespace') {
+            //steps {
+              //sh('sed -i "s/default/production/g" deployment-pesbuk.yml')
+                //}
+           //}
+        //stage('add domain') {
+            //steps {
+                //sh('sed -i "s/pesbuk.komarudins.online/pesbuk-cilsy.komarudins.online/g" deployment-pesbuk.yml')
+                //}
+           //}
         stage('deploy') {
             steps {
                 sh('kubectl delete -f deployment-pesbuk.yml')
