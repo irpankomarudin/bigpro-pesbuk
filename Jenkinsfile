@@ -15,7 +15,7 @@ pipeline {
            }
         stage('tagging') {
             steps {
-                sh('sed -i "s/tag/$BUILD_NUMBER/g" pesbuk-staging.yml')
+                sh('sed -i "s/bild/$BUILD_NUMBER/g" pesbuk-staging.yml')
                 }
            }
         //stage('locate namespace') {
