@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: default
 metadata:
-  name: sosmed-service
+  name: sosmed-service2
   namespace: dev
 spec:
   ports:
@@ -9,22 +9,22 @@ spec:
     protocol: TCP
   #type: LoadBalancer
   selector:
-    app: sosmed
+    app: sosmed2
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sosmed
+  name: sosmed2
   namespace: default
 spec:
   selector:
     matchLabels:
-      app: sosmed
+      app: sosmed2
   replicas: 1
   template:
     metadata:
       labels:
-        app: sosmed
+        app: sosmed2
     spec:
       containers:
       - name: php-pesbuk
@@ -64,5 +64,5 @@ spec:
       paths:
       #- path: /
       - backend:
-          serviceName: sosmed-service
+          serviceName: sosmed-service2
           servicePort: 80
