@@ -1,7 +1,7 @@
 kind: Service
-apiVersion: default
+apiVersion: v1
 metadata:
-  name: sosmed-service
+  name: pesbuk-service
   namespace: default
 spec:
   ports:
@@ -9,51 +9,58 @@ spec:
     protocol: TCP
   #type: LoadBalancer
   selector:
-    app: sosmed2
+    app: php-pesbuk
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sosmed
+  name: pesbuk-deployment
   namespace: default
+  labels:
+    app: php-pesbuk
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: sosmed
-  replicas: 1
+      app: php-pesbuk
+      track: stable
   template:
     metadata:
       labels:
-        app: sosmed
+        app: php-pesbuk
+        track: stable
     spec:
       containers:
       - name: php-pesbuk
         image: irpank/pesbuk-app:tag
         ports:
-          - containerPort: 80
+        - containerPort: 80
         env:
-        - name: DB_HOST
-          value: "database-app.ch1pzpidls28.ap-northeast-2.rds.amazonaws.com"
-        - name: DB_USER
-          valueFrom:
-            secretKeyRef:
-              name: p-secret-fb
-              key: DB_USER
-        - name: DB_PASS
-          valueFrom:
-            secretKeyRef:
-              name: p-secret-fb
-              key: DB_PASS
-        - name: DB_NAME
-          valueFrom:
-            secretKeyRef:
-              name: p-secret-fb
-              key: DB_NAME
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: p-secret-fb
+                  key: host
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: p-secret-fb
+                  key: user
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: p-secret-fb
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: p-secret-fb
+                  key: dbname
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: sosmed-ingress
+  name: pesbuk-ingress
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
@@ -64,5 +71,5 @@ spec:
       paths:
       #- path: /
       - backend:
-          serviceName: sosmed-service
+          serviceName: pesbuk-service
           servicePort: 80
