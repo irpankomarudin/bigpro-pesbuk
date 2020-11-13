@@ -2,7 +2,7 @@ kind: Service
 apiVersion: default
 metadata:
   name: sosmed-service2
-  namespace: dev
+  namespace: default
 spec:
   ports:
   - port: 80
