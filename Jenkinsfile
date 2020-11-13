@@ -30,8 +30,8 @@ pipeline {
            //}
         stage('deploy') {
             steps {
-                sh('kubectl delete -f deployment-pesbuk-dev.yml')
-                //sh('kubectl apply -f deployment-pesbuk-dev.yml')
+                //sh('kubectl delete -f deployment-pesbuk-dev.yml')
+                sh('kubectl apply -f deployment-pesbuk-dev.yml')
                 //sh('kubectl apply -f secret-pesbuk.yml')
                 }
            }
@@ -47,7 +47,7 @@ pipeline {
            }
          stage('show ingress') {
             steps {
-                sh('kubectl get ingress -n=staging')
+                sh('kubectl get ingress -n=dev')
                 }
            }        
       }
