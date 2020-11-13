@@ -15,23 +15,23 @@ pipeline {
            }
         stage('tagging') {
             steps {
-                sh('sed -i "s/tag/$BUILD_NUMBER/g" deployment-pesbuk.yml')
+                sh('sed -i "s/tag/$BUILD_NUMBER/g" pesbuk-staging.yml')
                 }
            }
-        stage('locate namespace') {
-            steps {
-              sh('sed -i "s/default/production/g" deployment-pesbuk.yml')
-                }
-           }
-        stage('add domain') {
-            steps {
-                sh('sed -i "s/pesbuk.komarudins.online/pesbuk-cilsy.komarudins.online/g" deployment-pesbuk.yml')
-                }
-           }
+        //stage('locate namespace') {
+            //steps {
+              //sh('sed -i "s/default/production/g" deployment-pesbuk.yml')
+                //}
+           //}
+        //stage('add domain') {
+            //steps {
+                //sh('sed -i "s/pesbuk.komarudins.online/pesbuk-cilsy.komarudins.online/g" deployment-pesbuk.yml')
+                //}
+           //}
         stage('deploy') {
             steps {
-                sh('kubectl delete -f deployment-pesbuk.yml')
-                //sh('kubectl apply -f deployment-pesbuk.yml')
+                //sh('kubectl delete -f deployment-pesbuk.yml')
+                sh('kubectl apply -f deployment-pesbuk.yml')
                 //sh('kubectl apply -f secret-pesbuk.yml')
                 }
            }
@@ -47,7 +47,7 @@ pipeline {
            }
          stage('show ingress') {
             steps {
-                sh('kubectl get ingress -n=production')
+                sh('kubectl get ingress -n=staging')
                 }
            }        
       }
