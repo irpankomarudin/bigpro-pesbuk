@@ -1,5 +1,5 @@
 kind: Service
-apiVersion: v1
+apiVersion: default
 metadata:
   name: sosmed-service
   namespace: dev
@@ -15,7 +15,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sosmed
-  namespace: dev
+  namespace: default
 spec:
   selector:
     matchLabels:
@@ -54,7 +54,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: sosmed-ingress
-  namespace: dev
+  namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
