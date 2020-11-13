@@ -14,7 +14,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: pesbuk-deployment
+  name: pesbuk-deployment2
   namespace: default
   labels:
     app: php-pesbuk2
@@ -60,7 +60,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: pesbuk-ingress
+  name: pesbuk-ingress2
   namespace: default
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
