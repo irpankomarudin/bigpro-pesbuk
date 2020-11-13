@@ -15,7 +15,7 @@ pipeline {
            }
         stage('tagging') {
             steps {
-                sh('sed -i "s/tag/$BUILD_NUMBER/g" deployment-pesbuk.yml')
+                sh('sed -i "s/tag/$BUILD_NUMBER/g" pesbuk-prod.yml')
                 }
            }
         //stage('locate namespace') {
@@ -30,8 +30,8 @@ pipeline {
            //}
         stage('deploy') {
             steps {
-                //sh('kubectl delete -f deployment-pesbuk.yml')
-                sh('kubectl apply -f deployment-pesbuk.yml')
+                //sh('kubectl delete -f pesbuk-prod.yml')
+                sh('kubectl apply -f pesbuk-prod.yml')
                 //sh('kubectl apply -f secret-pesbuk.yml')
                 }
            }
