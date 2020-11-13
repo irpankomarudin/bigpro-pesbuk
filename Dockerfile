@@ -1,7 +1,6 @@
-FROM php:7.3.22-apache-stretch
+from php:7.2-apache
+run docker-php-ext-install pdo pdo_mysql
 
-RUN apt-get update && docker-php-ext-install pdo_mysql mysqli pdo
+workdir /var/www/html
 
-WORKDIR /var/www/html/
-
-COPY . .
+copy . .
