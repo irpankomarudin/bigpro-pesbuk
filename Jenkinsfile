@@ -30,7 +30,7 @@ pipeline {
            //}
         stage('deploy') {
             steps {
-                //sh('kubectl delete -f pesbuk-prod.yml')
+                sh('kubectl delete -f pesbuk-prod.yml')
                 sh('kubectl apply -f pesbuk-prod.yml')
                 //sh('kubectl apply -f secret-pesbuk.yml')
                 }
