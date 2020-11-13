@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: default
 metadata:
-  name: sosmed-service2
+  name: sosmed-service
   namespace: default
 spec:
   ports:
@@ -19,12 +19,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: sosmed2
+      app: sosmed
   replicas: 1
   template:
     metadata:
       labels:
-        app: sosmed2
+        app: sosmed
     spec:
       containers:
       - name: php-pesbuk
@@ -64,5 +64,5 @@ spec:
       paths:
       #- path: /
       - backend:
-          serviceName: sosmed-service2
+          serviceName: sosmed-service
           servicePort: 80
