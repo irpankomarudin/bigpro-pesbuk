@@ -30,16 +30,16 @@ pipeline {
            //}
         stage('deploy') {
             steps {
-                //sh('kubectl delete -f deployment-pesbuk-dev.yml')
+                sh('kubectl delete -f deployment-pesbuk-dev.yml')
                 sh('kubectl apply -f deployment-pesbuk-dev.yml')
                 //sh('kubectl apply -f secret-pesbuk.yml')
                 }
            }
-        stage('apply-secret') {
-            steps {
-                sh('kubectl apply -f secret-pesbuk.yml')
-                }
-           }
+        //stage('apply-secret') {
+            //steps {
+                //sh('kubectl apply -f secret-pesbuk.yml')
+                //}
+           //}
         stage('remove image docker') {
             steps {
                 sh "docker rmi $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$BUILD_NUMBER"
