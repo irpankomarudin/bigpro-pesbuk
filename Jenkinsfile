@@ -37,7 +37,7 @@ pipeline {
            }
         stage('apply-secret') {
             steps {
-                //sh('kubectl apply -f secret-pesbuk.yml')
+                sh('kubectl apply -f secret-pesbuk.yml')
                 }
            }
         stage('remove image docker') {
