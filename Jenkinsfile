@@ -15,31 +15,31 @@ pipeline {
            }
         stage('tagging') {
             steps {
-                sh('sed -i "s/tag/$BUILD_NUMBER/g" pesbuk-staging.yml')
+                sh('sed -i "s/tag/$BUILD_NUMBER/g" deployment-pesbuk.yml')
                 }
            }
-        //stage('locate namespace') {
-            //steps {
-              //sh('sed -i "s/default/production/g" deployment-pesbuk.yml')
-                //}
-           //}
-        //stage('add domain') {
-            //steps {
-                //sh('sed -i "s/pesbuk.komarudins.online/pesbuk-cilsy.komarudins.online/g" deployment-pesbuk.yml')
-                //}
-           //}
+        stage('locate namespace') {
+            steps {
+              sh('sed -i "s/default/production/g" deployment-pesbuk.yml')
+                }
+           }
+        stage('add domain') {
+            steps {
+                sh('sed -i "s/pesbuk.komarudins.online/pesbuk-cilsy.komarudins.online/g" deployment-pesbuk.yml')
+                }
+           }
         stage('deploy') {
             steps {
-                sh('kubectl delete -f deployment-pesbuk.yml')
-                //sh('kubectl apply -f pesbuk-staging.yml')
+                //sh('kubectl delete -f deployment-pesbuk.yml')
+                sh('kubectl apply -f deployment-pesbuk.yml')
                 //sh('kubectl apply -f secret-pesbuk.yml')
                 }
            }
-        stage('apply-secret') {
-            steps {
+        //stage('apply-secret') {
+            //steps {
                 //sh('kubectl apply -f secret-pesbuk.yml')
-                }
-           }
+                //}
+           //}
         stage('remove image docker') {
             steps {
                 sh "docker rmi $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$BUILD_NUMBER"
@@ -47,7 +47,7 @@ pipeline {
            }
          stage('show ingress') {
             steps {
-                sh('kubectl get ingress -n=staging')
+                sh('kubectl get ingress -n=production')
                 }
            }        
       }
