@@ -33,22 +33,25 @@ spec:
           - containerPort: 80
         env:
         - name: DB_HOST
-          value: "database-app.ch1pzpidls28.ap-northeast-2.rds.amazonaws.com"
+          valueFrom:
+            secretKeyRef:
+              name: p-secret-fb
+              key: host
         - name: DB_USER
           valueFrom:
             secretKeyRef:
               name: p-secret-fb
-              key: DB_USER
+              key: user
         - name: DB_PASS
           valueFrom:
             secretKeyRef:
               name: p-secret-fb
-              key: DB_PASS
+              key: password
         - name: DB_NAME
           valueFrom:
             secretKeyRef:
               name: p-secret-fb
-              key: DB_NAME
+              key: dbname
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -59,7 +62,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: pesbuk.komarudins.online
+  - host: pesbuk-cilsy.komarudins.online
     http:
       paths:
       #- path: /
